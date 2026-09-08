@@ -9,11 +9,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/books', function () {
-//     // return 'daftar buku';
-//     return view('books.indeks');
-// });
-
 Route::get('/books', [BookController::class, 'index']);
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/members', [MemberController::class, 'index']);
