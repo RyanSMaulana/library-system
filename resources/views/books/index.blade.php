@@ -6,12 +6,21 @@
     <p>{{ $description }}</p>
 
     <ul>
-    @foreach($books as $book)
+    <!-- @foreach($books as $book)
     <li>
         {{ $book['judul'] }}
         - {{ $book['penulis'] }}
         - {{ $book['tahun'] }}
     </li>
+    @endforeach -->
+
+    @foreach($books as $book)
+        <li>
+        <h3>{{ $book->title }}</h3>
+        <p>Penulis: {{ $book->author }}</p>
+        <p>Tahun: {{ $book->year }}</p>
+        <p>Stok: {{ $book->stock }}</p>
+        </li>
     @endforeach
     </ul>
 

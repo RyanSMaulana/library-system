@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -10,33 +11,35 @@ class BookController extends Controller
         $title = 'Daftar Buku';
         $description = 'Daftar buku yang tersedia di perpustakaan.';
         $stock = 25;
-        $books = [
-            [
-                'judul' => 'Pemrograman PHP',
-                'penulis' => 'Apri',
-                'tahun' => 2022
-            ],
-            [
-                'judul' => 'Laravel untuk Pemula',
-                'penulis' => 'Ansyah',
-                'tahun' => 2023
-            ],
-            [
-                'judul' => 'Basis Data',
-                'penulis' => 'Maul',
-                'tahun' => 2021
-            ],
-            [
-                'judul' => 'Algoritma dan Pemrograman',
-                'penulis' => 'Ana',
-                'tahun' => 2021
-            ],
-            [
-                'judul' => 'Pemgrograman Berbasis Objek',
-                'penulis' => 'Ian',
-                'tahun' => 2021
-            ]
-        ];
+        // $books = [
+        //     [
+        //         'judul' => 'Pemrograman PHP',
+        //         'penulis' => 'Apri',
+        //         'tahun' => 2022
+        //     ],
+        //     [
+        //         'judul' => 'Laravel untuk Pemula',
+        //         'penulis' => 'Ansyah',
+        //         'tahun' => 2023
+        //     ],
+        //     [
+        //         'judul' => 'Basis Data',
+        //         'penulis' => 'Maul',
+        //         'tahun' => 2021
+        //     ],
+        //     [
+        //         'judul' => 'Algoritma dan Pemrograman',
+        //         'penulis' => 'Ana',
+        //         'tahun' => 2021
+        //     ],
+        //     [
+        //         'judul' => 'Pemgrograman Berbasis Objek',
+        //         'penulis' => 'Ian',
+        //         'tahun' => 2021
+        //     ]
+        // ];
+
+        $books = Book::all();
 
         return view('books.index', compact('title', 'description','books','stock'));
     }
