@@ -4,5 +4,6 @@
 
 @section('content')
     <p>Detail buku</p>
-    <p>ID : {{ $id }}</p>
+    <p>ID : {{ $book->id }}</p>
+    <p><a href="{{ route('books.index') }}">balik</a></p>
 @endsection
