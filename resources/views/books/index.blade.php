@@ -9,13 +9,14 @@
 
     <p>{{ $description }}</p>
 
-    <p><a href="{{ route('books.create') }}"><button>Tambah buku baru</button></a></p>
+    <p><a href="{{ route('books.create') }}"><button>+ Tambah buku baru</button></a></p>
 
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
                 <th>No Buku</th>
                 <th>Judul Buku</th>
+                <th>Kategori</th>
                 <th>Penulis</th>
                 <th>Tahun</th>
                 <th>Stok</th>
@@ -28,6 +29,7 @@
                 <tr>
                     <td>{{ $loop->iteration  }}</td>
                     <td>{{ $book->title }}</td>
+                    <td>{{ $book->category?->name ?? 'Belum ada kategori' }}</td>
                     <td>{{ $book->author }}</td>
                     <td>{{ $book->year }}</td>
                     <td>
@@ -38,16 +40,17 @@
                         @endif
                     </td>
                     <td>
+                        <a href="{{ route('books.show', $book->id) }}"><button>Detail</button></a>
                         <a href="{{ route('books.edit', $book->id) }}"><button>Edit</button></a>
-                        <hr>
                         <form
                             action="{{ route('books.destroy', $book) }}"
                             method="POST"
+                            style="display:inline"
                         >
                             @csrf
                             @method('DELETE')
 
-                            <button type="submit">
+                            <button type="submit" onclick="return confirm('hapus buku ini?')">
                                 Hapus
                             </button>
                         </form>
