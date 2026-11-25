@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {
@@ -14,9 +15,6 @@ Route::get('/', function () {
 
 Route::resource('books', BookController::class);
 
-Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/members', [MemberController::class, 'index']);
-Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])
@@ -33,4 +31,11 @@ Route::post('/logout', [AuthController::class, 'logout'])
 Route::middleware('auth')->group(function () {
     // Route buku yang hanya boleh diakses setelah login.
     Route::resource('books', BookController::class);
+    Route::get('/categories', [CategoryController::class, 'index']);
+    Route::get('/members', [MemberController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+});
+
+Route::middleware(['auth', 'can:manage-users'])->group(function() {
+    Route::resource('users', UserController::class);
 });

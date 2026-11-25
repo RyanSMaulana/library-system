@@ -3,11 +3,11 @@
 @section('title', 'Daftar Buku')
 
 @section('content')
-<form action="{{ route('logout') }}" method="POST">
+<!-- <form action="{{ route('logout') }}" method="POST">
     @csrf
 
     <button type="submit">Logout</button>
-</form>
+</form> -->
 
 @if (session('success'))
     <p>{{ session('success') }}</p>
